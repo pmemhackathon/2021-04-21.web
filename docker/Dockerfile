@@ -7,8 +7,6 @@ FROM fedora:30
 LABEL maintainer="andy.rudoff@intel.com"
 
 RUN dnf update -y && dnf install -y\
-	asciidoc\
-	asciidoctor\
 	autoconf\
 	automake\
 	bash-completion\
@@ -30,18 +28,11 @@ RUN dnf update -y && dnf install -y\
 	git-all\
 	glib2-devel\
 	golang\
-	gtest-devel\
-	hub\
-	json-c-devel\
-	keyutils-libs-devel\
-	kmod-devel\
 	lbzip2\
 	libatomic\
 	libtool\
 	libudev-devel\
 	libunwind-devel\
-	libuuid-devel\
-	libuv-devel\
 	make\
 	man\
 	memkind\
@@ -70,16 +61,11 @@ RUN dnf update -y && dnf install -y\
 	vim-enhanced\
 	wget\
 	which\
-	xmlto\
-	xmvn
-
-RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
-
-RUN dnf install -y nodejs
-
-RUN dnf debuginfo-install -y glibc
-
-RUN dnf clean all
+	xmvn\
+ && curl -sL https://rpm.nodesource.com/setup_10.x | bash - \
+ && dnf install -y nodejs \
+ && dnf debuginfo-install -y glibc \
+ && dnf clean all
 
 COPY pmdk.sh /
 RUN /pmdk.sh
@@ -92,9 +78,6 @@ RUN /pmemobj-cpp.sh
 
 COPY pmemkv.sh /
 RUN /pmemkv.sh
-
-COPY pmemkv-jni.sh /
-RUN /pmemkv-jni.sh
 
 COPY pmemkv-java.sh /
 RUN /pmemkv-java.sh
@@ -114,4 +97,4 @@ RUN /memkind.sh
 COPY tz.sh /
 RUN /tz.sh
 
-RUN rm /pmdk.sh /valgrind.sh /pmemobj-cpp.sh /pmemkv.sh /pmemkv-jni.sh /pmemkv-java.sh /pmemkv-python.sh /pmemkv-nodejs.sh /pmemkv-ruby.sh /memkind.sh /tz.sh
+RUN rm /pmdk.sh /valgrind.sh /pmemobj-cpp.sh /pmemkv.sh /pmemkv-java.sh /pmemkv-python.sh /pmemkv-nodejs.sh /pmemkv-ruby.sh /memkind.sh /tz.sh
