@@ -1,0 +1,54 @@
+{{top "Mapping Persistent Memory"}}
+
+<p class="intro">
+The ability to memory map persistent memory
+and access it directly is fundamental to
+all the examples in this workshop.
+<p class="intro">
+This example shows how this is done using a
+simple C program.
+
+{{template "scrollToContinue"}}
+
+<p>
+The Linux system call for memory mapping files
+is called <code>mmap()</code>.
+
+{{step "Run-Time Environment"}}
+
+Exposing pmem this way allows the management of
+persistent memory like any other storage, using
+files, directories, permissions, quotas, etc.
+
+{{step "CacheLib multi-tier example in C++"}}
+
+<p>
+This example creates a multi-tier cache using pmem as a secondary tier
+
+{{edit "main.cpp"}}
+
+<p>
+Once you've made any edits to the
+above source files, click the button
+below to build the program on the server.
+If you see any build errors, scroll back up
+to the source editing window and fix them.
+
+{{build "build.sh"}}
+
+<p>
+If the program built without errors, continue on to the next step below.
+
+{{step "Run Program"}}
+
+<p>
+Now you can try running the program.
+
+{{run "./run.sh"}}
+
+{{summary}}
+
+<p>
+This example demos how to create a multi-tier cache using Cachelib
+
+{{bottom}}
